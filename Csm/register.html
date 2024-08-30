@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Registration Form</title>
+  <style>
+    body {
+      background-size: cover;
+    }
+    .form-title {
+      text-align: center;
+      margin: 70px;
+    }
+    button {
+      color: #fff;
+      padding: 8px 22px;
+      border-radius: 6px;
+      background: #7d2ae8;
+      transition: all 0.2s ease;
+    }
+    button:active {
+      transform: scale(0.96);
+    }
+    .container {
+      display: flex;
+      width: 960px;
+      padding: 20px 40px;
+      box-sizing: border-box;
+      margin-left: 200px;
+    }
+    .blink {
+      animation: blinker 1.5 linear infinite;
+      color: red;
+      font-family: sans-serif;
+    }
+    .close-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 20px;
+      cursor: pointer;
+      width: 30px;
+      height: 30px;
+      background-color: #ddd;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .close-symbol {
+      color: #555;
+    }
+    .close-button:hover {
+      background-color: #aaa;
+    }
+    a {
+      color: #2e0cee;
+      text-decoration: none;
+      padding: 8px 22px;
+      /* border-radius: 6px; */
+      /* background: #4caf50; */
+      /* transition: all 0.2s ease; */
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+  <script>
+    function validateForm() {
+      var Name = document.forms["registrationForm"]["Name"].value;
+      var Email = document.forms["registrationForm"]["Email"].value;
+      var password = document.forms["registrationForm"]["password"].value;
+      var phonenumber = document.forms["registrationForm"]["phonenumber"].value;
+      var dob = document.forms["registrationForm"]["dob"].value;
+      var confrimpassword = document.forms["registrationForm"]["confirmpassword"].value;
+
+      if (Name === '' || Email === '' || password === '' || dob === '' || phonenumber === '') {
+        alert("Please fill in all fields");
+        return false;
+      }
+
+      var emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+      if (!Email.match(emailRegex)) {
+        alert("Please enter a valid email address");
+        return false;
+      }
+
+      if (password.length < 6) {
+        alert("Password should be at least 6 characters long");
+        return false;
+      }
+
+      if (password !== confrimpassword) {
+        alert("Please enter the correct password");
+        return false;
+      }
+
+      var d = new Date(dob);
+      if (isNaN(d)) {
+        alert("Please enter a valid date of birth");
+        return false;
+      }
+
+      var phoneregx = /^\d{10}$/;
+      if (!phoneregx.test(phonenumber)) {
+        alert("Invalid phone number");
+        return false;
+      }
+
+      return true;
+    }
+    function redirectToHome() {
+      var isValid = validateForm();
+      if (isValid) {
+        window.location.assign("k4.html");
+        alert("Registered Successfully!");
+         // Replace "home.html" with your actual home page URL
+        }
+    }
+  </script>
+</head>
+<body background="web7.jpeg">
+  <center><h1 class="form-title">REGISTER</h1></center>
+  <div class="container">
+    <form name="registrationForm" onsubmit="return validateForm()" method="post">
+      <table>
+        <tr>
+          <td><label for="firstName" style="font-size:23px;">NAME:</label></td>
+          <td><input type="text" id="Name" name="Name" required><br><br></td>
+        </tr>
+        <tr>
+          <td><label for="email" style="font-size:23px;">EMAIL:</label></td>
+          <td><input type="email" id="email" name="Email" required><br><br></td>
+        </tr>
+        <tr>
+          <td><label for="password" style="font-size:23px;">PASSWORD:</label></td>
+          <td><input type="password" id="password" name="password" required><br><br></td>
+        </tr>
+        <tr>
+          <td><label for="confirmpassword" style="font-size:23px;">CONFIRM PASSWORD:</label></td>
+          <td><input type="password" id="confirmpassword" name="confirmpassword" required><br><br></td>
+        </tr>
+        <tr>
+          <td><label for="dob" style="font-size:23px;">DATE OF BIRTH:</label></td>
+          <td><input type="date" id="dob" name="dob" required><br><br></td>
+        </tr>
+        <tr>
+          <td><label for="phonenumber" style="font-size:23px;">PHONE NUMBER:</label></td>
+          <td><input type="text" id="phonenumber" name="phonenumber" required><br><br></td>
+        </tr>
+      </table>
+      <br><br>
+      <button onclick="redirectToHome()"><strong>REGISTER</strong></button>&nbsp;&nbsp;
+      <a href="login.html">If registered?Login</a>
+    </form>
+  </div>
+  <marquee class="blink">welcome to recycle platform</marquee>
+</body>
+</html>
+
+

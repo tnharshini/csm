@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Recycling Memory Match Game</title>
+    <link rel="stylesheet" type="text/css" href="mem.css"> <!-- Link to your CSS file -->
+</head>
+<body>
+    <h1>Recycling Memory Match Game</h1>
+    <div id="game-container">
+        <div class="card" onclick="flipCard(this)">
+            <img src="recyclebin.jpeg" alt="Recyclable Item 1">
+        </div>
+        <div class="card" onclick="flipCard(this)">
+            <img src="recycle.jpeg" alt="Recyclable Item 2">
+        </div>
+        <div class="card" onclick="flipCard(this)">
+            <img src="trash.jpeg" alt="Recyclable Item 1">
+        </div>
+        <div class="card" onclick="flipCard(this)">
+            <img src="compostbin.jpeg" alt="Recyclable Item 1">
+        </div>
+        <div class="card" onclick="flipCard(this)">
+            <img src="food.jpeg" alt="Recyclable Item 1">
+        </div>
+        <div class="card" onclick="flipCard(this)">
+            <img src="compostbin.jpeg" alt="Recyclable Item 1">
+        </div>
+        <div class="card" onclick="flipCard(this)">
+            <img src="trash.jpeg" alt="Recyclable Item 1">
+        </div>
+        <div class="card" onclick="flipCard(this)">
+            <img src="recyclebin.jpeg" alt="Recyclable Item 1">
+        </div>
+        <div class="card" onclick="flipCard(this)">
+            <img src="recycle.jpeg" alt="Recyclable Item 2">
+        </div>
+        <div class="card" onclick="flipCard(this)">
+            <img src="food.jpeg" alt="Recyclable Item 1">
+        </div>
+        <!-- Add more pairs of recyclable items here -->
+    </div>
+    <div id="result">
+        <p>🎉Congratulations! You matched all items.🎉</p>
+    </div>
+
+    <script>
+        let flippedCards = [];
+        let matchedPairs = 0;
+        const totalPairs = 5; // Change this to the total number of pairs in your game
+        const cards = document.querySelectorAll(".card");
+        const resultElement = document.getElementById("result");
+    
+        function flipCard(card) {
+            if (flippedCards.length < 5 && !card.classList.contains("flipped")) {
+                card.classList.add("flipped");
+                flippedCards.push(card);
+
+        // Toggle the visibility of the card's image by changing opacity
+                const image = card.querySelector("img");
+                image.style.opacity = "1"; // Show the image when flipped
+
+                if (flippedCards.length === 2) {
+                setTimeout(checkMatch, 1000);
+        }
+    }
+}
+
+function checkMatch() {
+    const [card1, card2] = flippedCards;
+    if (card1.innerHTML === card2.innerHTML) {
+        card1.classList.add("matched");
+        card2.classList.add("matched");
+        matchedPairs++;
+
+        if (matchedPairs === totalPairs) {
+            resultElement.style.display = "block";
+        }
+    } else {
+        card1.classList.remove("flipped");
+        card2.classList.remove("flipped");
+
+        // Hide the images by changing opacity back to 0
+        const image1 = card1.querySelector("img");
+        const image2 = card2.querySelector("img");
+        image1.style.opacity = "0";
+        image2.style.opacity = "0";
+    }
+
+    flippedCards = [];
+}
+
+    </script>
+    
+</body>
+</html>
+
+

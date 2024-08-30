@@ -1,0 +1,76 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    color: #333;
+    background-color: #f0f0f0;
+    padding: 20px;
+}
+
+#game-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 10px;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.card {
+    width: 70px; /* Adjust the card width as needed */
+    height: 70px; /* Adjust the card height as needed */
+    perspective: 500px;
+    position: relative;
+    border: 5px solid #ccc;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    font-size: 0;
+    line-height: 0;
+}
+
+.card img {
+    max-width: 100%;
+    max-height: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out; /* Add a transition for opacity */
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% ;
+    height: 100% ;
+}
+
+/* ... (remaining CSS code) ... */
+
+
+.card.flipped {
+    transform: rotateY(180deg);
+}
+
+
+.card.matched {
+    background-color: #8BC34A; /* Change this to your desired matched color */
+    pointer-events: none;
+}
+
+#result {
+    display: none;
+    background-color: #fff;
+    padding: 20px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    margin: 20px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Recycling Centers Locator</title>
+<link rel="stylesheet" type="text/css" href="indus.css">
+</head>
+<body>
+<h1>Recycling Centers Locator</h1><br>
+
+<!-- Input field for alphabet selection -->
+<center><div class="alphabet-input">
+<label for="alphabet">Enter an alphabet: </label>
+<input type="text" id="alphabet" placeholder="Type an alphabet">
+<button onclick="showDistricts()">Submit</button>
+</div></center><br>
+
+<center><img src="web1.jpeg" width="600px" height="300px"></center><br><br>
+<!-- Container to display district names -->
+<div class="districts-container" id="districtsContainer">
+<h2>Districts</h2>
+<ul id="districtList">
+<!-- District names for the selected alphabet will be displayed here -->
+</ul>
+</div>
+
+<!-- Container to display district details -->
+<div class="details-container" id="detailsContainer">
+<h2>District Details</h2>
+<div id="detailsList">
+<!-- District details will be displayed here -->
+</div>
+</div>
+
+<script>
+// Sample district data for demonstration
+const districtsData = {
+'A': ['District 1A', 'District 2A'],
+'B': ['District 1B', 'District 2B'],
+'V': ['District 1V', 'District 2V'], // Added 'V' districts
+
+// Add more districts and their recycling centers
+};
+
+// Sample district details for demonstration
+const districtDetailsData = {
+'District 1A': {
+address: '123 Main St, District 1A',
+recyclingTypes: 'Paper, Plastic',
+contact: 'John Doe (555) 123-4567',
+image: 'dist1a.jpeg' // Add the image URL for District 1A
+},
+'District 2A': {
+address: '405 Raly St, District 2A',
+recyclingTypes: 'Glass, Steel',
+contact: 'Jane Smith (595) 987-6543',
+image: 'dist2a.jpeg' // Add the image URL for District 2A
+},
+'District 2B': {
+address: '806 Forg St, District 2B',
+recyclingTypes: 'Glass, Aluminum',
+contact: 'David Salc (455) 947-6043',
+image: 'dist2b.jpeg' // Add the image URL for District 2A
+},
+'District 1B': {
+
+address: '456 Elm St, District 1B',
+recyclingTypes: 'Bio Wastes',
+contact: 'Alex Wlex (685) 487-2563',
+image: 'dist1b.jpeg' // Add the image URL for District 2A
+},
+'District 1V': {
+address: '306 Elm St, District 1V',
+recyclingTypes: 'Glass, Plastics',
+contact: 'Forge Monc (556) 987-6343',
+image: 'dist1v.jpeg' // Add the image URL for District 2A
+},
+'District 2V': {
+address: '200 Clem St, District 2V',
+recyclingTypes: 'Glass, Bio wates',
+contact: 'Gorge Hell (955) 907-6543',
+image: 'dist2v.jpeg' // Add the image URL for District 2A
+},
+
+// Add more district details and images
+};
+
+function showDistricts() {
+const alphabetInput = document.getElementById('alphabet');
+const selectedAlphabet = alphabetInput.value.toUpperCase();
+
+const districtList = document.getElementById('districtList');
+districtList.innerHTML = ''; // Clear existing list
+
+if (districtsData[selectedAlphabet]) {
+for (const district of districtsData[selectedAlphabet]) {
+const listItem = document.createElement('li');
+listItem.innerHTML = `<a href="#"
+onclick="showDistrictDetails('${district}')">${district}</a>`;
+districtList.appendChild(listItem);
+}
+}
+}
+
+function showDistrictDetails(districtName) {
+const detailsContainer = document.getElementById('detailsContainer');
+const detailsList = document.getElementById('detailsList');
+detailsList.innerHTML = ''; // Clear existing details
+
+const districtDetails = districtDetailsData[districtName];
+if (districtDetails) {
+for (const [key, value] of Object.entries(districtDetails)) {
+if (key === 'image') {
+// Display the district image with adjusted size
+const imageElement = document.createElement('img');
+
+imageElement.src = value;
+imageElement.alt = districtName;
+imageElement.classList.add('district-image'); // Apply styling
+detailsList.appendChild(imageElement);
+} else {
+// Display other details
+const listItem = document.createElement('p');
+listItem.innerHTML = `<strong>${key}:</strong> ${value}`;
+detailsList.appendChild(listItem);
+}
+}
+}
+}
+</script>
+</body>
+</html>

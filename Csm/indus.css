@@ -1,0 +1,72 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(192, 240, 240);
+}
+
+h1 {
+    text-align: center;
+    background-color: rgb(104, 164, 167);
+    color: #fff;
+    padding: 10px;
+    margin: 0;
+}
+
+.alphabet-bar {
+    background-color: #009688;
+    text-align: center;
+    padding: 10px 0;
+}
+
+.alphabet-bar ul {
+    list-style: none;
+}
+
+.alphabet-bar li {
+    display: inline;
+    margin: 0 10px;
+}
+
+.alphabet-bar a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 18px;
+}
+
+.districts-container, .centers-container {
+    background-color:rgb(192, 240, 240);
+    margin: 20px;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.districts-container h2, .centers-container h2 {
+    font-size: 20px;
+    margin: 0 0 10px;
+}
+.details-container, .centers-container {
+    background-color:rgb(192, 240, 240);
+    margin: 20px;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    text-align: left;
+    overflow: hidden;
+}
+
+#districtList, #centersList {
+    list-style: none;
+}
+
+#districtList li, #centersList li {
+    margin: 10px 0;
+    font-size: 16px;
+}
+
+
+.district-image {
+    max-width: 100%;
+    max-height: 200px;
+    float: left;
+    margin-right: 10px;
+}

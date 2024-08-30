@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Environmental Trivia Game</title>
+    <link rel="stylesheet" type="text/css" href="eco.css"> <!-- Link to your CSS file -->
+</head>
+<body>
+    <h1>Environmental Trivia Game</h1>
+    <div id="question-container">
+        <p id="question">Question goes here.</p>
+        <ul id="choices">
+            <li><button onclick="checkAnswer(this)">Choice 1</button></li>
+            <li><button onclick="checkAnswer(this)">Choice 2</button></li>
+            <li><button onclick="checkAnswer(this)">Choice 3</button></li>
+            <li><button onclick="checkAnswer(this)">Choice 4</button></li>
+        </ul>
+    </div>
+    <div id="result">
+        <p>Your Score: <span id="score">0</span></p>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                question: "What can you recycle in the blue bin?",
+                choices: ["Glass", "Plastic", "Bananas", "Paper"],
+                correct: 3 // Index of the correct choice (Paper)
+            },
+            {
+                question: "Which gas is a major contributor to global warming?",
+                choices: ["Oxygen", "Nitrogen", "Carbon Dioxide", "Hydrogen"],
+                correct: 2 // Index of the correct choice (Carbon Dioxide)
+            },
+            {
+                question: "What is the primary source of renewable energy from the sun?",
+                choices: ["Wind", "Solar", "Hydropower", "Geothermal"],
+                correct: 1 // Index of the correct choice (Solar)
+           },
+           {
+                question: "What is the largest ocean on Earth?",
+                choices: ["Atlantic Ocean", "Indian Ocean", "Arctic Ocean", "Pacific Ocean"],
+                correct: 3 // Index of the correct choice (Pacific Ocean)
+           },
+            // Add more questions here
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+
+        function displayQuestion() {
+            if (currentQuestion < questions.length) {
+                const q = questions[currentQuestion];
+                document.getElementById("question").textContent = q.question;
+
+                const choices = document.querySelectorAll("#choices button");
+                for (let i = 0; i < q.choices.length; i++) {
+                    choices[i].textContent = q.choices[i];
+                }
+            } else {
+                document.getElementById("question-container").style.display = "none";
+                const resultElement = document.getElementById("result");
+                
+                if (score === questions.length) {
+                    resultElement.innerHTML = "<p>🥳Congratulations! You got a perfect score!💃🥳</p>";
+                } else if (score === 0) {
+                    resultElement.innerHTML = "<p>😱Oops! Your score is 0. Keep trying, you can do better!😲😨</p>";
+                } else {
+                    resultElement.innerHTML = `<p>Close to the core! Your Score: <span id="score">${score}</span></p>`;
+                }
+            }
+        }
+
+        function checkAnswer(button) {
+            if (questions[currentQuestion].correct === Array.from(button.closest('ul').children).indexOf(button.parentElement)) {
+                score++;
+            }
+            currentQuestion++;
+            displayQuestion();
+        }
+
+        displayQuestion();
+    </script>
+</body>
+</html>

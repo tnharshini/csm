@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Recycle Learning Platform</title>
+<link rel="stylesheet" type="text/css" href="styles.css">
+
+</head>
+<body>
+
+<div class="sidebar">
+<h2>EcoQuest</h2>
+<ul>
+<li><a href="#Environmental Trivia Game">Environmental Trivia Game</a></li>
+<li><a href="#Recycling Memory Match Game">Recycling Memory Match
+Game</a></li>
+
+<li><a href="#About">About</a></li>
+</ul>
+</div>
+
+<div class="content">
+<div id="Environmental Trivia Game">
+<center><h2>ECO GAME</h2></center>
+<iframe src="eco.html" width="100%" height="500" frameborder="0"></iframe>
+</div>
+<div id="Recycling Memory Match Game">
+<center><h2>ECO GAME</h2></center>
+<iframe src="mem.html" width="100%" height="500" frameborder="0"></iframe>
+</div>
+
+<div id="About">
+<h2>About</h2>
+<p>Lorem100.</p>
+</div>
+</div>
+<script>
+
+const topicLinks = document.querySelectorAll('.sidebar ul li a');
+const contentSections = document.querySelectorAll('.content div');
+
+contentSections.forEach((section) => {
+section.style.display = 'none'; // Hide all content sections initially
+});
+
+topicLinks.forEach((link) => {
+link.addEventListener('click', (event) => {
+event.preventDefault();
+contentSections.forEach((section) => {
+section.style.display = 'none';
+});
+
+const targetId = link.getAttribute('href').substring(1);
+const targetSection = document.getElementById(targetId);
+if (targetSection) {
+targetSection.style.display = 'block';
+}
+});
+});
+</script>
+</body>
+</html>
